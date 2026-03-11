@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaWallet } from "react-icons/fa";
+import { MdDashboard } from "react-icons/md";
+import { GiExpense } from "react-icons/gi";
+import { LuLogOut } from "react-icons/lu";
 
 type SideMenuProps = {
     onClose: () => void;
 };
 
 const menuItems = [
-    { label: "Dashboard", href: "/dashboard", id: 0, img: <FaWallet /> },
+    { label: "Dashboard", href: "/dashboard", id: 0, img: <MdDashboard /> },
     { label: "Income", href: "/income", id: 1, img: <FaWallet /> },
-    { label: "Expense", href: "/expense", id: 2, img: <FaWallet /> },
-    { label: "Logout", href: "/logout", id: 3, img: <FaWallet /> }
+    { label: "Expense", href: "/expense", id: 2, img: <GiExpense /> },
+    { label: "Logout", href: "/logout", id: 3, img: <LuLogOut /> }
 ];
 
 export default function SideMenu({ onClose }: SideMenuProps) {
