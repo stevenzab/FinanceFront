@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaWallet } from "react-icons/fa";
 
 type SideMenuProps = {
     onClose: () => void;
 };
 
 const menuItems = [
-    { label: "Dashboard", href: "/dashboard", id: 0 },
-    { label: "Income", href: "/income", id: 1 },
-    { label: "Expense", href: "/expense", id: 2 },
+    { label: "Dashboard", href: "/dashboard", id: 0, img: <FaWallet /> },
+    { label: "Income", href: "/income", id: 1, img: <FaWallet /> },
+    { label: "Expense", href: "/expense", id: 2, img: <FaWallet /> },
+    { label: "Logout", href: "/logout", id: 3, img: <FaWallet /> }
 ];
 
 export default function SideMenu({ onClose }: SideMenuProps) {
@@ -18,25 +20,13 @@ export default function SideMenu({ onClose }: SideMenuProps) {
         <div className="w-full">
             <ul className="py-2">
                 {menuItems.map((item) => (
-                    <li key={item.id}>
-                        <Link
-                            href={item.href}
-                            className={`block w-full px-4 py-2 text-left text-sm ${pathname === item.href ? "bg-blue-200 text-black rounded" : "text-black hover:bg-gray-100"}`}
-                            onClick={onClose}
-                        >
-                            {item.label}
-                        </Link>
+                    <Link href={item.href} key={item.id} onClick={onClose}>
+                    <li key={item.id} className={`flex items-center block w-full px-4 py-2 text-left text-sm ${pathname === item.href ? "bg-blue-200 text-black rounded" : "text-black hover:bg-gray-100"}`}>
+                        <span className="mr-2">{item.img}</span>
+                        {item.label}
                     </li>
+                    </Link>
                 ))}
-                <li>
-                    <button
-                        type="button"
-                        className="w-full px-4 py-2 text-left text-sm text-gray-800 hover:bg-gray-100"
-                        onClick={onClose}
-                    >
-                        Logout
-                    </button>
-                </li>
             </ul>
         </div>
     );
