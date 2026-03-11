@@ -18,11 +18,12 @@ export default function AppShell({ children }: AppShellProps) {
                 onToggleMenu={() => setOpenSideMenu((prev) => !prev)}
             />
             <div className="flex">
-                {openSideMenu && (
-                    <aside className="w-64 min-h-[calc(100vh-61px)] border-r border-gray-200/50 bg-white p-5">
-                        <SideMenu onClose={() => setOpenSideMenu(false)} />
-                    </aside>
-                )}
+                <aside
+                    className={`${openSideMenu ? "block" : "hidden"}
+                        w-64 min-h-[calc(100vh-61px)] border-r border-gray-200/50 bg-white p-5 lg:block`}
+                >
+                    <SideMenu onClose={() => setOpenSideMenu(false)} />
+                </aside>
 
                 <main className="flex-1">{children}</main>
             </div>
