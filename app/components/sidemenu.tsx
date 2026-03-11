@@ -24,7 +24,7 @@ export default function SideMenu({ onClose }: SideMenuProps) {
             <ul className="py-2">
                 {menuItems.map((item) => (
                     <Link href={item.href} key={item.id} onClick={onClose}>
-                    <li key={item.id} className={`flex items-center block w-full px-4 py-2 text-left text-sm ${pathname === item.href ? "bg-blue-200 text-black rounded" : "text-black hover:bg-gray-100"}`}>
+                    <li key={item.id} className={`flex items-center block w-full px-4 py-2 text-left text-md ${pathname === item.href ? "bg-blue-200 text-black rounded" : "text-black hover:bg-gray-100"}`}>
                         <span className="mr-2">{item.img}</span>
                         {item.label}
                     </li>
