@@ -102,7 +102,8 @@ export default function DashboardPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-zinc-50 p-8">
+			<>
+        <main className="bg-zinc-50 p-8">
             <h1 className="text-2xl font-semibold text-black">Dashboard</h1>
             <p className="mt-2 text-gray-600">Welcome to your dashboard.</p>
 
@@ -116,18 +117,23 @@ export default function DashboardPage() {
                     />
                 ))}
             </section>
-
-            <SummaryPieChart title="Répartition des indicateurs" items={pieItems} />
-
-            {data.map((transaction: Transaction) => (
-                <div key={transaction.id} className="mt-4 p-4 bg-white rounded shadow">
-                    <p className="text-gray-800">Amount: {transaction.amount}</p>
-                    <p className="text-gray-800">Description: {transaction.description}</p>
-                    <p className="text-gray-800">Date: {transaction.date}</p>
-                    <p className="text-gray-800">Category: {transaction.category}</p>
-                    <p className="text-gray-800">Type: {getTransactionTypeLabel(transaction.type)}</p>
-                </div>
-            ))}
         </main>
+					<div className="mt-8 flex flex-row gap-8">
+							<SummaryPieChart title="Répartition des indicateurs" items={pieItems} />
+
+							<div className="mt-6 flex-row gap-4">
+									{data.map((transaction: Transaction) => (
+											<div key={transaction.id} className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+													<p className="text-gray-800">Amount: {transaction.amount}</p>
+													<p className="text-gray-800">Description: {transaction.description}</p>
+													<p className="text-gray-800">Date: {transaction.date}</p>
+													<p className="text-gray-800">Category: {transaction.category}</p>
+													<p className="text-gray-800">Type: {getTransactionTypeLabel(transaction.type)}</p>
+											</div>
+									))}
+							</div>
+					</div>
+			
+			</>
     );
 }
