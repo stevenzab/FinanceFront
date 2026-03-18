@@ -31,7 +31,7 @@ export default function SummaryPieChart({ title, items }: SummaryPieChartProps) 
     };
 
     return (
-        <section className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm w-full">
+        <section className="ml-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm w-full">
             <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
 
             <div className="mt-6 flex flex-col items-center justify-between gap-8 lg:flex-row">
