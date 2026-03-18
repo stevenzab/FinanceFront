@@ -22,9 +22,7 @@ export default function DashboardPage() {
             if (!response.ok) {
                 throw new Error(`API request failed with status ${response.status}`);
             }
-
-            const fetchedData: Transaction[] = await response.json();
-            console.log("Transactions:", fetchedData);
+            const fetchedData = await response.json();
             setData(fetchedData);
         } catch (error) {
             console.error("Error fetching transactions:", error);
