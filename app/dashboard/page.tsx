@@ -13,68 +13,6 @@ type Transaction = {
     type: number;
 };
 
-type ApiTransaction = {
-    id?: number;
-    Id?: number;
-    amount?: number | string;
-    Amount?: number | string;
-    description?: string;
-    Description?: string;
-    date?: string;
-    Date?: string;
-    category?: string;
-    Category?: string;
-    type?: number | string;
-    Type?: number | string;
-};
-
-const parseTransactionType = (rawType: number | string | undefined, amount: number) => {
-    if (typeof rawType === "number") {
-        return rawType;
-    }
-
-    if (typeof rawType === "string") {
-        const normalizedType = rawType.trim().toLowerCase();
-        if (normalizedType === "income") {
-            return 0;
-        }
-        if (normalizedType === "expense") {
-            return 1;
-        }
-
-        const numericType = Number(rawType);
-        if (!Number.isNaN(numericType)) {
-            return numericType;
-        }
-    }
-
-    return amount < 0 ? 1 : 0;
-};
-
-const normalizeTransactions = (payload: unknown): Transaction[] => {
-    const items = Array.isArray(payload)
-        ? payload
-        : Array.isArray((payload as { data?: unknown[] })?.data)
-            ? (payload as { data: unknown[] }).data
-            : Array.isArray((payload as { items?: unknown[] })?.items)
-                ? (payload as { items: unknown[] }).items
-                : [];
-
-    return items.map((rawItem, index) => {
-        const item = rawItem as ApiTransaction;
-        const amount = Number(item.amount ?? item.Amount ?? 0);
-
-        return {
-            id: Number(item.id ?? item.Id ?? index),
-            amount,
-            description: String(item.description ?? item.Description ?? ""),
-            date: String(item.date ?? item.Date ?? ""),
-            category: String(item.category ?? item.Category ?? ""),
-            type: parseTransactionType(item.type ?? item.Type, amount),
-        };
-    });
-};
-
 export default function DashboardPage() {
     const [data, setData] = useState<Transaction[]>([]);
 
@@ -85,10 +23,9 @@ export default function DashboardPage() {
                 throw new Error(`API request failed with status ${response.status}`);
             }
 
-            const fetchedData = await response.json();
-            const normalizedData = normalizeTransactions(fetchedData);
-            console.log("Transactions:", normalizedData);
-            setData(normalizedData);
+            const fetchedData: Transaction[] = await response.json();
+            console.log("Transactions:", fetchedData);
+            setData(fetchedData);
         } catch (error) {
             console.error("Error fetching transactions:", error);
             setData([]);
