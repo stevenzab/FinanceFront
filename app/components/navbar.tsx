@@ -16,7 +16,7 @@ export default function Navbar({ onToggleMenu, openSideMenu }: NavbarProps) {
                 onClick={onToggleMenu}
             />
             <Link
-                href="/"
+                href="/dashboard"
                 className="text-lg font-medium text-black"
             >
                 Financio
