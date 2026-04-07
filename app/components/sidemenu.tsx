@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 import { FaWallet } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { GiExpense } from "react-icons/gi";
-import { LuLogOut } from "react-icons/lu";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
