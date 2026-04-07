@@ -9,6 +9,9 @@ const appUrl =
 
 export const auth = betterAuth({
   baseURL: appUrl,
+  emailAndPassword: {
+    enabled: true,
+  },
   plugins: [
     nextCookies(),
     dash({
